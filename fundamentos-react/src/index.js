@@ -2,11 +2,9 @@ import './index.css'
 import ReactDOM from 'react-dom'
 import React from 'react'
 
-const tag = <strong>Olá React</strong>
+import App from './App'
 
 ReactDOM.render(
-    <div>
-        {tag}
-    </div>, 
+    <App />,
     document.getElementById('root')
 )

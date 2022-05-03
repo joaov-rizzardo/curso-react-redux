@@ -4,7 +4,7 @@ import produtos from '../../data/produtos'
 
 const produtosRow = produtos.map(produto => {
     return (
-        <tr key={produto.id} className={produto.id % 2 == 0 ? 'Par' : 'Impar'}>
+        <tr key={produto.id} className={produto.id % 2 === 0 ? 'Par' : 'Impar'}>
             <td>{produto.id}</td>
             <td>{produto.descricao}</td>
             <td>{produto.preco}</td>

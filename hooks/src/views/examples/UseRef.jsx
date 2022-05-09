@@ -7,6 +7,7 @@ const merge = (s1, s2) => {
         return e + (s2[i] || '')
     }).join("")
 }
+
 const UseRef = (props) => {
 
     const [value1, setValue1] = useState("");

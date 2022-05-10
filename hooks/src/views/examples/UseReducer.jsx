@@ -1,31 +1,15 @@
-import { type } from '@testing-library/user-event/dist/type'
-import React, { useReducer } from 'react'
+import React, { useReducer, useState } from 'react'
 import PageTitle from '../../components/layout/PageTitle'
 
-const initialState = {
-    cart: [],
-    products: [],
-    user: null,
-    // foco...
-    number: 0
-}
-
-function reducer(state, action){
-    switch(action.type){
-        case 'add2ToNumber':
-            return {...state, number: state.number + 2}
-        case 'login':
-            return {...state, user: {name: action.name}}
-        default:
-            return state
-    }
-}
+import {initialState, reducer, add2ToNumber} from '../../store/index'
 
 const UseReducer = (props) => {
+    const [number, setNumber] = useState(0)
 
     const [state, dispatch] = useReducer(reducer, initialState)
+
     return (
-        <div className="UseReducer">
+        <div className="UseReducer"> 
             <PageTitle
                 title="Hook UseReducer"
                 subtitle="Uma outra forma de ter estado em componentes funcionais!"
@@ -35,10 +19,16 @@ const UseReducer = (props) => {
                 {state.user ?
                 <span className="text">{state.user.name}</span>
                 :  <span className="text">Sem Usuário</span>}
-            
+
+                <span className="text">{state.number}</span>
                 <div>
                     <button className="btn" onClick={() => dispatch({type: 'login', name: 'Xyz'})}>Login</button>
-                    <button className="btn" onClick={() => dispatch({type: 'add2ToNumber'})}>+2</button>
+                    <button className="btn" onClick={() => add2ToNumber(dispatch)}>+2</button>
+                    <button className="btn" onClick={() => dispatch({type: 'multiplyPerSeven'})}>*7</button>
+                    <button className="btn" onClick={() => dispatch({type: 'divideTwentyFive'})}>/25</button>
+                    <button className="btn" onClick={() => dispatch({type: 'parseInt'})}>INT</button>
+                    <input type="number" className="input" value={number} onChange={e => setNumber(e.target.value)}/>
+                    <button className="btn" onClick={() => dispatch({type: 'addNumber', number: number})}>Adicionar</button>
                 </div>
             </div>
         </div>

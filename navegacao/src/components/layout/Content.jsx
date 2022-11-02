@@ -6,7 +6,6 @@ import Home from '../../views/examples/Home'
 import Param from '../../views/examples/Param'
 import NotFound from '../../views/examples/NotFound'
 
-
 const Content = props => {
     return(
         <main className="Content">

@@ -5,6 +5,8 @@ import Entrada from "./Entrada";
 
 interface FormularioProps {
     cliente?: Cliente
+    cancelado?: () => void
+    clienteMudou?: (cliente: Cliente) => void
 }
 
 export default function Formulario(props: FormularioProps) {
@@ -19,8 +21,14 @@ export default function Formulario(props: FormularioProps) {
             <Entrada texto="Idade" tipo="number" valor={idade} valorMudou={setIdade}/>
             
             <div className="mt-7 flex justify-end">
-                <Botao cor="blue" className="mr-2">{id ? 'Alterar' : 'Salvar'}</Botao>
-                <Botao cor="gray">Cancelar</Botao>
+                <Botao 
+                    onClick={() => props.clienteMudou?.(new Cliente(nome, +idade, id))} 
+                    cor="blue" 
+                    className="mr-2"
+                >
+                    {id ? 'Alterar' : 'Salvar'}
+                </Botao>
+                <Botao onClick={props.cancelado} cor="gray">Cancelar</Botao>
             </div>
         </div>
     )
